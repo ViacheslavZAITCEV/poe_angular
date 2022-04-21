@@ -1,0 +1,13 @@
+<h1>Exercices</h1>
+<p-panel header="Exercice 1 : les pipes">
+  <p>Mis à jour : {{ lastUpdate | date: 'short' }}</p>
+  <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd'}}</p>
+  <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' | uppercase}}</p>
+</p-panel>
+<p-panel header="Exercice 2 : le pipe async">
+  <p>Mis à jour : {{ lastUpdateAsync }}</p>
+</p-panel>
+<p-panel header="Exercice 3 : les observables">
+  <p>Vous êtes connecté depuis {{secondes}} secondes !</p>
+</p-panel>
+  

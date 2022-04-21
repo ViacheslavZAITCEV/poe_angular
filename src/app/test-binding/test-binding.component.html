@@ -1,0 +1,117 @@
+<p-panel header="Interpolation" [toggleable]="true">
+    <p>Nous sommes le {{afficheMomentActuel()|uppercase}}</p>
+</p-panel>
+
+<p-panel header="Liaison de propriétés">
+    <input [type]="inputType">
+</p-panel>
+
+<p-panel header="Liaison d'évènements">
+    <p>Compteur: {{compteur}}</p>
+    <button (click)="incrementeCompteur()">Clique ici</button>
+</p-panel>
+
+<p-panel header="Double data binding">
+    <input type="text" [(ngModel)]="content">
+    <p>{{content}}</p>
+</p-panel>
+
+<p-panel header="Directive d'attribut : ngClass">
+    Sexe:
+    <span>
+        <input type="radio" [(ngModel)]="sexe" value="F"  /> F
+        <input type="radio" [(ngModel)]="sexe" value="M"  /> M
+    </span>
+    <div [ngClass]="{'carreRose': sexe === 'F', 'carreBleu': sexe === 'M' }"> </div>
+</p-panel>
+
+<p-panel header="Créer une directive d'attribut">
+    <h6 appHighlight> Je teste la directive d'attribut que j'ai créé</h6>
+</p-panel>
+
+<p-panel header="Créer une directive d'attribut">
+    <h6 appHighlight [highlightColor]="color"> Je teste la directive d'attribut que j'ai créé</h6>
+</p-panel>
+
+<p-panel header="Directive structurelle : *ngIf">
+    Nom: <input type="text" [(ngModel)]="monNom">
+    <p *ngIf='!monNom' style="color:red">Le nom doit obligatoirement être renseigné</p>
+</p-panel>
+
+<p-panel header="Directive structurelle : *ngFor">
+    <ul>
+        <li *ngFor="let article of articles">{{article.reference}} : {{article.prix}}  </li>
+    </ul>
+</p-panel>
+
+<p-panel header="Directive structurelle : *ngSwitch">
+    <ul>
+        <li *ngFor="let article of articles">
+            <div [ngSwitch]="article.reference">
+                {{article.reference}} : {{article.prix}}
+                <b *ngSwitchCase="'pomme'">Fruit</b>
+                <b *ngSwitchDefault>Consommable</b>
+            </div>
+        </li>
+    </ul>
+</p-panel>
+
+<p-panel header="Directive structurelle : *ngSwitch avec ng-container">
+    <ul>
+        <li *ngFor="let article of articles">
+            <ng-container [ngSwitch]="article.reference">
+                {{article.reference}} : {{article.prix}}
+                <b *ngSwitchCase="'pomme'">Fruit</b>
+                <b *ngSwitchDefault>Consommable</b>
+            </ng-container>
+        </li>
+    </ul>
+</p-panel>
+
+<p-panel header="Créer une directive structurelle">
+    <ng-container *appTimer="200">*</ng-container>
+</p-panel>
+
+<p-panel header="Pipe">
+    <p>Nous sommes le {{today|date|uppercase}}</p>
+</p-panel>
+
+<p-panel header="Pipe personnalisé">
+    <div style="margin-left: 20px;">
+        <h4>{{ "1234 5678 9123 5263" | cb}}</h4>
+    </div>
+</p-panel>
+
+<p-panel header="Pipe async avec une promise">
+    <div style="margin-left: 20px;">
+        <h4>{{ name | async | uppercase}}</h4>
+    </div>
+</p-panel>
+
+<p-panel header="Pipe async avec un Observable">
+    <div style="margin-left: 20px;">
+        <h4>{{ cpt | async}}</h4>
+    </div>
+</p-panel>
+
+<p-panel header="Communication entre composants">
+    <div style="margin-top: 50px;">
+        <input type="text"  [(ngModel)]="organe" />
+        <button (click)="organes.push(organe)">Ajouter</button>
+    </div>
+    <div style="margin-top: 50px;">
+        <ul>
+            <app-organe-item *ngFor="let org of organes" [organe]="org" (deleteOrg)="deleteOrgane($event)">
+            </app-organe-item>
+        </ul>
+    </div>
+</p-panel>
+
+<p-panel header="Les services">
+    <div style="width: 200px;">
+        <div>
+            <app-add></app-add>
+            <app-panier></app-panier>
+        </div>
+    </div>
+</p-panel>

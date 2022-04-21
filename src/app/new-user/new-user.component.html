@@ -1,0 +1,33 @@
+<p-panel header="Formulaire d'inscription">
+    <div class="card">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+            <span class="p-float-label">
+                <input id="firstName" class="form-control" formControlName="firstName" pInputText>
+                <label for="firstName">Prénom</label>
+            </span>
+            <span class="p-float-label">
+                <input id="lastName" class="form-control" formControlName="lastName" pInputText>
+                <label for="lastName">Nom</label>
+            </span>
+            <span class="p-float-label">
+                <input id="email" class="form-control" formControlName="email" pInputText>
+                <label for="email">Adresse e-mail</label>
+            </span>
+            <div>
+                <p-dropdown [style]="{'font-size':'14px'}" formControlName="drinkPreference" id="drinkPreference"
+                    [options]="drinks" placeholder="Quelle boisson préférez-vous?" appendTo="body" style="font-size: 14px;">
+                </p-dropdown>
+            </div>
+            <!--<div formArrayName="hobbies">
+                <h4>Vos hobbies </h4>
+                <div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+                    <input type="text" class="form-control" [formControlName]="i">
+                </div>
+                <button type="button" class="btn btn-success" (click)="onAddHobby()">+</button>
+            </div>-->
+            <div style="margin-top: 10px;">
+                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Soumettre</button>
+            </div>
+        </form>
+    </div>
+</p-panel>
